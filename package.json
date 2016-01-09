@@ -1,0 +1,30 @@
+{
+  "name": "hello-docker",
+  "version": "1.0.0",
+  "description": "Basic hello world solver with Node, Docker, Nginx",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garysye/hello-docker.git"
+  },
+  "keywords": [
+    "node",
+    "docker",
+    "nginx",
+    "hello",
+    "world"
+  ],
+  "author": "Gary Ye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garysye/hello-docker/issues"
+  },
+  "homepage": "https://github.com/garysye/hello-docker#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
