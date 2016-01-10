@@ -3,6 +3,10 @@ var app = express();
 
 var apiRouter = express.Router();
 
+app.get('/', function (req, res) {
+  res.send('Hello world\n');
+});
+
 app.use('/v1', apiRouter);
 
 require('./api/api')(apiRouter);
