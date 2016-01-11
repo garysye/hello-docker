@@ -1,0 +1,36 @@
+.display-raw {
+  width: 500px;
+}
+
+.table-aggregate {
+  padding: 0px;
+  margin: 0px;
+  width: 500px;
+}
+
+.row-raw {
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  display: block;
+  width: 500px;
+}
+
+.entry-ip {
+  font-weight: bold;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  display: block;
+  width: 500px;
+}
+
+.entry-date {
+  list-style-type: none;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  display: block;
+  width: 490px;
+  padding-left: 10px;
+}
