@@ -8,7 +8,7 @@ var toArray = require('stream-to-array');
 
 module.exports = function(app) {
   app.get('/hello-world', function(req, res) {
-    client.lpush(['hello-world', JSON.stringify({IP: req.ip, timestamp: Date.now()})], function(err, reply) {
+    client.lpush(['hello-world', JSON.stringify({IP: req.ip.split(':').pop(), timestamp: Date.now()})], function(err, reply) {
       if (err) {
         console.log('Error: ' + err);
       } else {
