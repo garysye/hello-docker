@@ -9,7 +9,7 @@ var toArray = require('stream-to-array');
 module.exports = function(app) {
   // For GET at this endpoint, push it to Redis and sends a message
   app.get('/hello-world', function(req, res) {
-    client.lpush(['hello-world', JSON.stringify({IP: req.ip.split(':').pop(), timestamp: Date.now()})], function(err, reply) {
+    client.rpush(['hello-world', JSON.stringify({IP: req.ip.split(':').pop(), timestamp: Date.now()})], function(err, reply) {
       if (err) {
         console.error('Error: ' + err);
       }
@@ -30,7 +30,7 @@ module.exports = function(app) {
 
   // For GET at this endpoint, gets all logs stored for every endpoint in Redis and responds with it
   app.get('/logs', function(req, res) {
-    var data = {logs: {}, errs: {}};
+    var data = {logset: [], errs: {}};
     var promises = [];
     // Gets all keys stored in Redis
     toArray(client.scan(), function(err, keys) {
@@ -44,7 +44,7 @@ module.exports = function(app) {
               data.err[key] = err;
             })
             .then(function(logs) {
-                data.logs[key] = parseLogs(logs);
+                data.logset.push({endpoint: key, logs: parseLogs(logs)});
             }));
         });
         // When data is retrieved for all keys, resonds with it

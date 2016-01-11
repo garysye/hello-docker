@@ -65,10 +65,10 @@ $(document).ready(function() {
     })
       .done(function(data) {
         var lastUpdateInd = logs.raw.length - 1;
-        for (var key in data.logs) {
-          aggregateLogs(data.logs[key], logs, logs.lastUpdates[key]);
-          logs.lastUpdates[key] = data.logs[key].length - 1;
-        }
+        data.logset.forEach(function(endpointLog) {
+          aggregateLogs(endpointLog.logs, logs, logs.lastUpdates[endpointLog.endpoint]);
+          logs.lastUpdates[endpointLog.endpoint] = endpointLog.logs.length - 1;
+        });
         updateLogsDisplay(logs, 'logs-all', lastUpdateInd);
       });
   };
@@ -80,6 +80,7 @@ $(document).ready(function() {
     })
       .done(function(data) {
         var lastUpdateInd = logsHelloWorld.raw.length - 1;
+        console.log(data);
         aggregateLogs(data, logsHelloWorld, lastUpdateInd);
         updateLogsDisplay(logsHelloWorld, 'logs-hello-world', lastUpdateInd);
       });
@@ -91,5 +92,5 @@ $(document).ready(function() {
   setInterval(function() {
     getAllLogs();
     getHelloWorldLogs();
-  }, 60000);
+  }, 15000);
 });
